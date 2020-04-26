@@ -163,7 +163,7 @@ def main():
         
         df.loc[i] = [algorithms[i]] + list_media
         list_media = []
-    df.to_excel('./teste.xlsx')
+    df.to_excel('./resultado.xlsx')
 
 
 main()
