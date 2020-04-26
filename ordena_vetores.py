@@ -1,3 +1,9 @@
+from os import system
+
+system('pip install pandas')
+system('pip install openpyxl')
+
+
 import time
 import random
 import pandas as pd
@@ -114,14 +120,13 @@ def handlerTime(sortType, listRandomRange):
     sort = sort_algorithms()
     rand = randomNumbers()
     inicio = time.time()
-    if(sortType == 'bubble_sort'):
+    if(sortType == 'bubble_sort' and listRandomRange <= 10000):
         for i in range(1):
-            print('passou pelo bubble')
             sort.bubble_sort(rand.create_random_numbers(listRandomRange))
     elif(sortType == 'merge_sorte'):
         for i in range(1):
             sort.merge_sort(rand.create_random_numbers(listRandomRange))
-    elif(sortType == 'insertion_sort'):
+    elif(sortType == 'insertion_sort' and listRandomRange <= 100000):
         for i in range(1):
             sort.insertion_sort(rand.create_random_numbers(listRandomRange))
     elif(sortType == 'quick_sort'):
@@ -140,9 +145,9 @@ def main():
     algorithms = ['bubble_sort', 'merge_sorte',
                     'insertion_sort', 'quick_sort', 'counting_sort']
     list_media = []
-    #     values = [1000, 10000, 100000, 1000000, 10000000]
-    values = [1000, 10000]
-    df = pd.DataFrame(columns=['Algoritimos', 'N = 1000', 'N = 10000'])
+    values = [1000, 10000, 100000, 1000000, 10000000]
+    #values = [1000, 10000]
+    df = pd.DataFrame(columns=['Algoritimos', 'N = 1000', 'N = 10000', 'N = 100000', 'N = 1000000', 'N = 10000000'])
     for i in range(len(algorithms)):
         time_list = []
         for j in range(len(values)):
@@ -159,9 +164,9 @@ def main():
             df.loc[i] = [algorithms[i]] + list_media
             list_media = []
 
-        return df
+    df.to_excel('./resultado.xlsx')
 
-df = main()
-df
-df.to_excel('./resultado.xlsx')
+main()
+
+
 
