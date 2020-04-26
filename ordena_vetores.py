@@ -141,9 +141,8 @@ def handlerTime(sortType, listRandomRange):
     return (fim - inicio)
 
 
-def main():
-    algorithms = ['bubble_sort', 'merge_sorte',
-                    'insertion_sort', 'quick_sort', 'counting_sort']
+def main():    
+    algorithms = ['bubble_sort', 'merge_sorte', 'insertion_sort', 'quick_sort', 'counting_sort']
     list_media = []
     values = [1000, 10000, 100000, 1000000, 10000000]
     #values = [1000, 10000]
@@ -154,17 +153,18 @@ def main():
             time_list.append(handlerTime(algorithms[i], values[j]))
             media = 0
             for time in time_list:
-               media = media + time
-               media = media/10
+                media = media + time
 
-               print('media ', algorithms[i], media, values[j])
-               list_media.append(media)
-            print(list_media)
+            media = media
+            
+            print('media ', algorithms[i], media, values[j])
+            list_media.append(media)
+        print(list_media)
+        
+        df.loc[i] = [algorithms[i]] + list_media
+        list_media = []
+    df.to_excel('./teste.xlsx')
 
-            df.loc[i] = [algorithms[i]] + list_media
-            list_media = []
-
-    df.to_excel('./resultado.xlsx')
 
 main()
 
