@@ -120,21 +120,21 @@ def handlerTime(sortType, listRandomRange):
     sort = sort_algorithms()
     rand = randomNumbers()
     inicio = time.time()
-    if(sortType == 'bubble_sort' and listRandomRange <= 10000):
-        for i in range(1):
+    if(sortType == 'bubble_sort'):
+        for i in range(10):
             sort.bubble_sort(rand.create_random_numbers(listRandomRange))
     elif(sortType == 'merge_sorte'):
-        for i in range(1):
+        for i in range(10):
             sort.merge_sort(rand.create_random_numbers(listRandomRange))
-    elif(sortType == 'insertion_sort' and listRandomRange <= 100000):
-        for i in range(1):
+    elif(sortType == 'insertion_sort'):
+        for i in range(10):
             sort.insertion_sort(rand.create_random_numbers(listRandomRange))
     elif(sortType == 'quick_sort'):
-        for i in range(1):
+        for i in range(10):
             sort.quickSort(rand.create_random_numbers(
                 listRandomRange), 0, listRandomRange - 1)
     elif(sortType == 'counting_sort'):
-        for i in range(1):
+        for i in range(10):
             sort.counting_sort(rand.create_random_numbers(
                 listRandomRange), listRandomRange)
     fim = time.time()
@@ -148,14 +148,11 @@ def main():
     #values = [1000, 10000]
     df = pd.DataFrame(columns=['Algoritimos', 'N = 1000', 'N = 10000', 'N = 100000', 'N = 1000000', 'N = 10000000'])
     for i in range(len(algorithms)):
-        time_list = []
+    
         for j in range(len(values)):
-            time_list.append(handlerTime(algorithms[i], values[j]))
-            media = 0
-            for time in time_list:
-                media = media + time
+            media = (handlerTime(algorithms[i], values[j]))
 
-            media = media
+            media = media/10
             
             print('media ', algorithms[i], media, values[j])
             list_media.append(media)
